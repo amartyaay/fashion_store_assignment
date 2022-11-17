@@ -12,7 +12,7 @@ class FavNotifier extends StateNotifier<List<int>> {
 final favProvider = StateNotifierProvider<FavNotifier, List<int>>((ref) => FavNotifier());
 
 class QuantityNotifier extends StateNotifier<List<int>> {
-  QuantityNotifier() : super([0, 0, 0]);
+  QuantityNotifier() : super([1, 1, 1, 1, 1]);
   void increaseQuantity(id) => state[id] = state[id] + 1;
   void decreaseQuant(id) => state[id]--;
 }

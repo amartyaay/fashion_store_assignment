@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class GetData {
   List<Clothes> clothCollection = [];
-  final apiUrl = 'https://fakestoreapi.com/products?limit=3';
+  final apiUrl = 'https://fakestoreapi.com/products?limit=5';
   Future<List<Clothes>> apiCall() async {
     final res = await http.get(
       Uri.parse(apiUrl),
