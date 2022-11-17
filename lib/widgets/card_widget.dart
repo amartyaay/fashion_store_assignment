@@ -1,9 +1,10 @@
 import 'package:fashion_store_assignment/constants/stylings.dart';
-import 'package:fashion_store_assignment/logic/providers/fav_provider.dart';
+import 'package:fashion_store_assignment/logic/providers/quantity_price_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../logic/models/fonts.dart';
+import '../logic/providers/fav_provider.dart';
 
 class CardWidget extends ConsumerWidget {
   final String title, image;
@@ -112,12 +113,21 @@ class CardWidget extends ConsumerWidget {
                         child: IconButton(
                             splashColor: Colors.white,
                             onPressed: () {
-                              ref.read(favProvider.notifier).addFav(id);
-                              // print(ref.watch(favProvider.notifier).fav);
+                              ref.read(quantProvider.notifier).addFav(id);
+                              final cart = ref.watch(favProvider);
+                              if (!cart.contains(id)) {
+                                ref.read(favProvider.notifier).addToCart(id);
+                              } else {
+                                ref.read(favProvider.notifier).removeFromCart(id);
+                              }
+
+                              // print(ref.watch(quantProvider.notifier).fav);
                             },
                             icon: Consumer(
                               builder: (context, ref, child) {
-                                return (ref.watch(favProvider) ?? {}).containsKey(id)
+                                final cart = ref.watch(favProvider);
+
+                                return cart.contains(id)
                                     ? const Icon(Icons.shopping_bag)
                                     : const Icon(Icons.shopping_bag_outlined);
                               },

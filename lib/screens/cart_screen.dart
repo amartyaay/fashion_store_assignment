@@ -1,11 +1,11 @@
 import 'package:fashion_store_assignment/constants/stylings.dart';
-import 'package:fashion_store_assignment/logic/providers/fav_provider.dart';
 import 'package:fashion_store_assignment/logic/providers/providers.dart';
 import 'package:fashion_store_assignment/widgets/list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../logic/models/fonts.dart';
+import '../logic/providers/quantity_price_provider.dart';
 
 class CartPage extends ConsumerWidget {
   const CartPage({super.key});
@@ -15,7 +15,6 @@ class CartPage extends ConsumerWidget {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    Map lst = ref.watch(favProvider) ?? {};
     return ref.watch(apiProvider).when(
         data: (data) {
           return Scaffold(
@@ -43,7 +42,7 @@ class CartPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: Consumer(builder: (context, ref, child) {
-                        Map list = ref.watch(favProvider) ?? {};
+                        Map list = ref.watch(quantProvider) ?? {};
                         return SizedBox(
                           height: list.length * 240,
                           child: ListView.builder(

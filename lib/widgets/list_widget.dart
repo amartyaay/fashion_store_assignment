@@ -1,8 +1,9 @@
-import 'package:fashion_store_assignment/logic/providers/fav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../logic/models/fonts.dart';
+import '../logic/providers/fav_provider.dart';
+import '../logic/providers/quantity_price_provider.dart';
 
 class ListWidget extends ConsumerWidget {
   final num price;
@@ -29,6 +30,7 @@ class ListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final quantity = ref.watch(qunatityProvider);
     return Container(
       margin: EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 24 * fem),
       width: double.infinity,
@@ -186,8 +188,8 @@ class ListWidget extends ConsumerWidget {
                               child: InkWell(
                                 child: const Icon(Icons.remove),
                                 onTap: () {
-                                  ref.read(favProvider.notifier).decrement(id);
-                                  print(ref.read(favProvider.notifier).fav);
+                                  ref.read(quantProvider.notifier).decrement(id);
+                                  ref.read(qunatityProvider.notifier).decreaseQuant(id - 1);
                                 },
                               ),
                             ),
@@ -195,15 +197,13 @@ class ListWidget extends ConsumerWidget {
                               width: 14 * fem,
                             ),
                             Consumer(builder: (context, ref, child) {
-                              final l = ref.watch(favProvider);
+                              final l = ref.watch(quantProvider);
                               int q = 0;
                               print('l is ');
                               print(l);
-                              if (l != null) {
-                                q = l[id];
-                              }
+                              q = l![id];
                               return Text(
-                                q.toString(),
+                                quantity[id - 1].toString(),
                                 style: safeGoogleFont(
                                   'Poppins',
                                   fontSize: 12 * ffem,
@@ -224,8 +224,9 @@ class ListWidget extends ConsumerWidget {
                                   Icons.add,
                                 ),
                                 onTap: () {
-                                  ref.read(favProvider.notifier).increment(id);
-                                  print(ref.read(favProvider.notifier).fav);
+                                  ref.read(quantProvider.notifier).increment(id);
+                                  print(ref.read(quantProvider.notifier).fav);
+                                  ref.read(qunatityProvider.notifier).increaseQuantity(id - 1);
                                 },
                               ),
                             ),
