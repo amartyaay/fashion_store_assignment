@@ -1,4 +1,5 @@
 import 'package:fashion_store_assignment/constants/stylings.dart';
+import 'package:fashion_store_assignment/logic/providers/fav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,17 +11,17 @@ class CardWidget extends ConsumerWidget {
   final num price;
   final double fem;
   final double ffem;
+  final int id;
   const CardWidget({
+    required this.id,
     required this.fem,
     required this.ffem,
     required this.title,
     required this.image,
     required this.price,
     required this.index,
-    required this.isFav,
     super.key,
   });
-  final bool isFav;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -109,12 +110,18 @@ class CardWidget extends ConsumerWidget {
                         width: 24 * fem,
                         height: 24 * fem,
                         child: IconButton(
-                          splashColor: Colors.white,
-                          onPressed: () {},
-                          icon: !isFav
-                              ? const Icon(Icons.shopping_bag_outlined)
-                              : const Icon(Icons.shopping_bag),
-                        ),
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              ref.read(favProvider.notifier).addFav(id);
+                              // print(ref.watch(favProvider.notifier).fav);
+                            },
+                            icon: Consumer(
+                              builder: (context, ref, child) {
+                                return (ref.watch(favProvider) ?? {}).containsKey(id)
+                                    ? const Icon(Icons.shopping_bag)
+                                    : const Icon(Icons.shopping_bag_outlined);
+                              },
+                            )),
                       ),
                     ],
                   ),

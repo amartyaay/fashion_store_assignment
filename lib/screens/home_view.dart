@@ -13,6 +13,7 @@ class HomeView extends ConsumerWidget {
     const double basewidth = 375;
     double fem = MediaQuery.of(context).size.width / basewidth;
     double ffem = 0.97 * fem;
+
     return ref.watch(apiProvider).when(
         data: (data) {
           return SingleChildScrollView(
@@ -45,13 +46,13 @@ class HomeView extends ConsumerWidget {
                         return Row(
                           children: [
                             CardWidget(
+                              id: data[index].id,
                               fem: fem,
                               ffem: ffem,
                               title: data[index].title,
                               image: data[index].image,
                               price: data[index].price,
                               index: index,
-                              isFav: false,
                             ),
                             SizedBox(
                               width: 165 * fem,
@@ -63,22 +64,22 @@ class HomeView extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             CardWidget(
+                              id: data[index].id,
                               fem: fem,
                               ffem: ffem,
                               title: data[index].title,
                               image: data[index].image,
                               price: data[index].price,
                               index: index,
-                              isFav: data[index].isFav,
                             ),
                             CardWidget(
+                              id: data[index + 1].id,
                               fem: fem,
                               ffem: ffem,
                               title: data[index + 1].title,
                               image: data[index + 1].image,
                               price: data[index + 1].price,
                               index: index + 1,
-                              isFav: data[index + 1].isFav,
                             ),
                           ],
                         );

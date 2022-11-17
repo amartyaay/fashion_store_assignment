@@ -10,7 +10,6 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int index = 0;
     final screens = [const HomeView()];
     return Scaffold(
       backgroundColor: Colors.white,

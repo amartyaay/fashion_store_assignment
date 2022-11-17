@@ -17,7 +17,6 @@ class CardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final p = price.toString();
     return Container();
   }
 }

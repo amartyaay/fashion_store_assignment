@@ -15,3 +15,11 @@ TextStyle clothNameStyle = safeGoogleFont(
   height: 1.5,
   color: const Color(0xff4b4a5a),
 );
+TextStyle cartPageStyle = safeGoogleFont(
+  'Poppins',
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+  height: 1.5,
+  letterSpacing: 0.8,
+  color: const Color.fromARGB(255, 0, 0, 0),
+);

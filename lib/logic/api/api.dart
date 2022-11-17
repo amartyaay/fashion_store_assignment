@@ -5,9 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 class GetData {
+  List<Clothes> clothCollection = [];
   final apiUrl = 'https://fakestoreapi.com/products?limit=11';
   Future<List<Clothes>> apiCall() async {
-    List<Clothes> clothCollection = [];
     final res = await http.get(
       Uri.parse(apiUrl),
     );
@@ -22,6 +22,10 @@ class GetData {
       );
       clothCollection.add(cloth);
     });
+    return clothCollection;
+  }
+
+  List getClothList() {
     return clothCollection;
   }
 }
