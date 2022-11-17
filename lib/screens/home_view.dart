@@ -105,22 +105,22 @@ class HomeView extends ConsumerWidget {
   }
 }
 
-List<Widget> listBuilder(data, fem, ffem) {
-  List<Widget> list = [];
-  int n = data.length;
-  for (int index = 0; index < n; index + 1) {
-    list.add(
-      CardWidget(
-        title: data[index].title,
-        image: data[index].image,
-        price: data[index].price,
-        index: index,
-        isFav: data[index].isFav,
-        fem: fem,
-        ffem: ffem,
-        // isFav: data[index].isFav,
-      ),
-    );
-  }
-  return list;
-}
+// List<Widget> listBuilder(data, fem, ffem) {
+//   List<Widget> list = [];
+//   int n = data.length;
+//   for (int index = 0; index < n; index + 1) {
+//     list.add(
+//       CardWidget(
+//         title: data[index].title,
+//         image: data[index].image,
+//         price: data[index].price,
+//         index: index,
+//         isFav: data[index].isFav,
+//         fem: fem,
+//         ffem: ffem,
+//         // isFav: data[index].isFav,
+//       ),
+//     );
+//   }
+//   return list;
+// }

@@ -1,4 +1,5 @@
 import 'package:fashion_store_assignment/logic/providers/providers.dart';
+import 'package:fashion_store_assignment/widgets/list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,7 +13,7 @@ class CartPage extends ConsumerWidget {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    final favProvider = ref.watch(apiProvider).when(
+    return ref.watch(apiProvider).when(
         data: (data) {
           return Scaffold(
             appBar: AppBar(
@@ -38,13 +39,23 @@ class CartPage extends ConsumerWidget {
                 ),
               ),
             ),
-            body: SizedBox(
-              width: 327 * fem,
-              child: ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return Container();
-                },
+            body: Center(
+              child: SizedBox(
+                width: 350 * fem,
+                child: ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    return ListWidget(
+                        image: data[index].image,
+                        fem: fem,
+                        ffem: ffem,
+                        price: data[index].price,
+                        title: data[index].title,
+                        quatity: 2,
+                        color: Colors.black,
+                        size: 'S');
+                  },
+                ),
               ),
             ),
           );

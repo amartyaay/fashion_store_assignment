@@ -64,28 +64,25 @@ class CardWidget extends ConsumerWidget {
                               style: brandNameStyle,
                             ),
                       Text(
-                        title.substring(0, 3),
+                        title.substring(0, 12),
                         style: clothNameStyle,
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  // group11YUv (1:7)
                   width: double.infinity,
                   height: 24 * fem,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        // autogroup13q8JDC (UQsg2A5QM7Tqpoxg2A13q8)
                         margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 57 * fem, 0 * fem),
                         width: 60 * fem,
                         height: double.infinity,
                         child: Stack(
                           children: [
                             Positioned(
-                              // EMk (1:10)
                               left: 0 * fem,
                               top: 0 * fem,
                               child: Align(
@@ -109,7 +106,6 @@ class CardWidget extends ConsumerWidget {
                         ),
                       ),
                       SizedBox(
-                        // autogroupfnsq3pz (UQsg8uPALHJ8tFXboEFNsQ)
                         width: 24 * fem,
                         height: 24 * fem,
                         child: IconButton(

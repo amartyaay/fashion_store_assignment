@@ -1,14 +1,14 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../logic/models/fonts.dart';
 
 class ListWidget extends ConsumerWidget {
   final num price;
   final String title;
   final int quatity;
   final Color color;
-  final Char size;
+  final String size;
   final double fem;
   final double ffem;
   final String image;
@@ -27,19 +27,204 @@ class ListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      margin: EdgeInsets.all(24 * fem),
+      margin: EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 24 * fem),
+      width: double.infinity,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 80 * fem,
+          Container(
+            margin: EdgeInsets.only(right: 16 * fem),
             width: 80 * fem,
+            height: 80 * fem,
             child: Image(
               image: NetworkImage(image),
               fit: BoxFit.cover,
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 16 * fem),
+          SizedBox(
+            width: 231 * fem,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 18 * fem),
+                  width: double.infinity,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 66 * fem, 0 * fem),
+                        constraints: BoxConstraints(
+                          maxWidth: 113 * fem,
+                        ),
+                        child: Text(
+                          title.substring(0, 12),
+                          style: safeGoogleFont(
+                            'Poppins',
+                            fontSize: 12 * ffem,
+                            fontWeight: FontWeight.w500,
+                            height: 1.5 * ffem / fem,
+                            color: const Color(0xff1c1c19),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '\$ $price',
+                        textAlign: TextAlign.right,
+                        style: safeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: const Color(0xff1c1c19),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 20 * fem,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0 * fem, 3 * fem, 31 * fem, 3 * fem),
+                        height: double.infinity,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 20 * fem, 0 * fem),
+                              width: 36 * fem,
+                              height: double.infinity,
+                              child: Positioned(
+                                left: 0 * fem,
+                                top: 0 * fem,
+                                child: Align(
+                                  child: SizedBox(
+                                    width: 36 * fem,
+                                    height: 18 * fem,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: safeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w500,
+                                          height: 1.5 * ffem / fem,
+                                          color: const Color(0xffafbec4),
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: 'Size: ',
+                                            style: safeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 12 * ffem,
+                                              fontWeight: FontWeight.w400,
+                                              height: 1.5 * ffem / fem,
+                                              color: const Color(0xffafbec4),
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: size,
+                                            style: safeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 12 * ffem,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1.5 * ffem / fem,
+                                              color: const Color(0xff1c1c19),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4 * fem),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 12 * fem, 0 * fem),
+                                    child: Text(
+                                      'Color',
+                                      style: safeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: const Color(0xffafbec4),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 14 * fem,
+                                    height: 14 * fem,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4 * fem),
+                                      color: color,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: double.infinity,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 20 * fem,
+                              height: 20 * fem,
+                              child: InkWell(
+                                child: const Icon(Icons.remove),
+                                onTap: () {},
+                              ),
+                            ),
+                            SizedBox(
+                              width: 14 * fem,
+                            ),
+                            Text(
+                              quatity.toString(),
+                              style: safeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w500,
+                                height: 1.5 * ffem / fem,
+                                color: const Color(0xff1c1c19),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 14 * fem,
+                            ),
+                            SizedBox(
+                              width: 20 * fem,
+                              height: 20 * fem,
+                              child: InkWell(
+                                child: const Icon(
+                                  Icons.add,
+                                ),
+                                onTap: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
